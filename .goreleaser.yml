@@ -1,0 +1,27 @@
+before:
+  hooks:
+  - go mod download
+builds:
+- id: kubectl-janitor
+  main: ./cmd/
+  binary: kubectl-janitor
+  env:
+  - CGO_ENABLED=0
+  goos:
+  - darwin
+  - linux
+  - windows
+  goarch:
+  - amd64
+
+checksum:
+  name_template: 'checksums.txt'
+
+archives:
+- builds:
+  - kubectl-janitor
+  name_template: "{{ .ProjectName }}_{{ .Tag }}_{{ .Os }}_{{ .Arch }}"
+  wrap_in_directory: false
+  files:
+  - LICENSE 
+  

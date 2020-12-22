@@ -1,0 +1,30 @@
+apiVersion: krew.googlecontainertools.github.com/v1alpha2
+kind: Plugin
+metadata:
+  name: janitor
+spec:
+  version: {{ .TagName }}
+  homepage: https://github.com/dastergon/kubectl-janitor
+  shortDescription: Find objects in a problematic state
+  description: |
+   This plugin assists in finding
+   Kubernetes objects in a problematic state. 
+  platforms:
+  - selector:
+      matchLabels:
+        os: darwin
+        arch: amd64
+    {{addURIAndSha "https://github.com/dastergon/kubectl-janitor/releases/download/{{ .TagName }}/kubectl-janitor_{{ .TagName }}_darwin_amd64.tar.gz" .TagName }}
+    bin: kubectl-janitor
+  - selector:
+      matchLabels:
+        os: linux
+        arch: amd64
+    {{addURIAndSha "https://github.com/dastergon/kubectl-janitor/releases/download/{{ .TagName }}/kubectl-janitor_{{ .TagName }}_linux_amd64.tar.gz" .TagName }}
+    bin: kubectl-janitor
+  - selector:
+      matchLabels:
+        os: windows
+        arch: amd64
+    {{addURIAndSha "https://github.com/dastergon/kubectl-janitor/releases/download/{{ .TagName }}/kubectl-janitor_{{ .TagName }}_windows_amd64.tar.gz" .TagName }}
+    bin: kubectl-janitor.exe
