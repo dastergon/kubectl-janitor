@@ -52,6 +52,8 @@ func NewJanitorCommand() *cobra.Command {
 	cmd.AddCommand(newPodsCommand(f, o))
 	cmd.AddCommand(newPVCsCommand(f, o))
 	cmd.AddCommand(newPVsCommand(f, o))
+	cmd.AddCommand(newSVCsCommand(f, o))
+	cmd.AddCommand(newINGsCommand(f, o))
 
 	return cmd
 }
